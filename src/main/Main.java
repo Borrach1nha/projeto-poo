@@ -1,13 +1,15 @@
 package main;
-
+ 
+import model.Endereco;
 import model.Encomenda;
 import model.Veiculo;
+import model.VeiculoPequeno;
+import model.VeiculoGrande;
 import model.Rota;
 import model.Funcionario;
-import model.Endereco;
-
-// Samuel Asafe - RGA 202321901040
-
+import model.Motorista;
+import model.Entregador;
+ 
 public class Main {
  
     public static void main(String[] args) {
@@ -35,17 +37,17 @@ public class Main {
         );
  
         // =========================
-        // CRIANDO VEÍCULOS
+        // CRIANDO VEÍCULOS (com polimorfismo)
         // =========================
  
-        Veiculo veiculo1 = new Veiculo(
+        Veiculo veiculo1 = new VeiculoPequeno(
             "Fiat Ducato",
             "ABC-1234",
             1500.0,
             "disponivel"
         );
  
-        Veiculo veiculo2 = new Veiculo(
+        Veiculo veiculo2 = new VeiculoGrande(
             "Mercedes Sprinter",
             "XYZ-5678",
             2000.0,
@@ -94,23 +96,23 @@ public class Main {
         System.out.println();
  
         // =========================
-        // CRIANDO FUNCIONÁRIOS
+        // CRIANDO FUNCIONÁRIOS (com polimorfismo)
         // =========================
  
-        Funcionario funcionario1 = new Funcionario(
+        Funcionario funcionario1 = new Motorista(
             "Carlos Silva",
             "123.456.789-00",
             "ABC12345",
-            "Motorista",
-            3500.00
+            3500.00,
+            "E"
         );
  
-        Funcionario funcionario2 = new Funcionario(
+        Funcionario funcionario2 = new Entregador(
             "Fernanda Lima",
             "987.654.321-00",
             "DEF67890",
-            "Entregador",
-            2800.00
+            2800.00,
+            "Centro"
         );
  
         System.out.println("=== FUNCIONÁRIOS ===");
@@ -119,12 +121,25 @@ public class Main {
         System.out.println();
  
         // =========================
+        // POLIMORFISMO EM AÇÃO
+        // =========================
+ 
+        System.out.println("=== POLIMORFISMO - FUNCIONÁRIOS ===");
+        funcionario1.realizarTarefa();
+        funcionario2.realizarTarefa();
+        System.out.println();
+ 
+        System.out.println("=== POLIMORFISMO - VEÍCULOS ===");
+        veiculo1.calcularCapacidadeUtil();
+        veiculo2.calcularCapacidadeUtil();
+        System.out.println();
+ 
+        // =========================
         // OPERAÇÕES
         // =========================
  
         System.out.println("=== OPERAÇÕES ===");
  
-        // Funcionário atribui veículo e registra entregas
         funcionario1.atribuirVeiculo(veiculo1);
         funcionario1.registrarEntrega(encomenda1);
         funcionario2.atribuirVeiculo(veiculo2);
@@ -132,7 +147,6 @@ public class Main {
  
         System.out.println();
  
-        // Verificar endereços
         System.out.println("Endereço 1 válido? " + endereco1.validarCEP());
         System.out.println("Etiqueta:\n" + endereco1.formatarParaEtiqueta());
         System.out.println();
@@ -142,4 +156,3 @@ public class Main {
     }
  
 }
- 

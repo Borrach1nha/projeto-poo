@@ -1,5 +1,5 @@
 package model;
-
+ 
 public class Veiculo {
  
     public String modelo;
@@ -12,6 +12,11 @@ public class Veiculo {
         this.placa = placa;
         this.capacidadeDeCarga = capacidadeDeCarga;
         this.status = status;
+    }
+ 
+    public double calcularCapacidadeUtil() {
+        // Por padrão, 80% da capacidade total
+        return this.capacidadeDeCarga * 0.80;
     }
  
     public boolean verificarDisponibilidade() {
@@ -28,4 +33,3 @@ public class Veiculo {
                "', capacidadeDeCarga=" + capacidadeDeCarga + ", status='" + status + "'}";
     }
 }
- 
